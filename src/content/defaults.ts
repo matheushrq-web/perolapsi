@@ -319,7 +319,7 @@ export const DEFAULT_CONTENT: SiteContent = {
     title: "Toda conversa começa *de algum lugar.*",
     text:
       "Talvez você ainda tenha dúvidas. Talvez esteja tentando encontrar as palavras certas.\n\nNão precisa ter tudo definido agora.\n\nSe sentir que este pode ser um espaço para você, estou à disposição para conversarmos sobre as possibilidades de atendimento.",
-    whatsapp: "",
+    whatsapp: "558588700044",
     whatsappLabel: "Vamos conversar pelo WhatsApp",
     whatsappMessage:
       "Olá, Pérola! Conheci seu trabalho através do site e gostaria de saber um pouco mais sobre os atendimentos psicológicos.",
