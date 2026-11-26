@@ -34,10 +34,6 @@ export function Breathing({ c }: { c: SiteContent }) {
 
   return (
     <div className={`breath${running ? " is-running" : ""}`}>
-      <div className="breath__stage" aria-hidden="true">
-        <span className="breath__ring" />
-        <span className="breath__orb" />
-      </div>
       <p className="breath__label" aria-live="polite">
         {running ? (
           <>
