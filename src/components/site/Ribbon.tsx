@@ -17,7 +17,7 @@ export function Ribbon({ c }: { c: SiteContent }) {
       {words.map((w, i) => (
         <li key={i}>
           <span>{w}</span>
-          <span className="pearl ribbon__pearl" aria-hidden="true" />
+          <span className="ribbon__dot" aria-hidden="true" />
         </li>
       ))}
     </ul>

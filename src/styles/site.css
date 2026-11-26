@@ -1383,9 +1383,6 @@ main:focus {
   display: grid;
   justify-items: center;
 }
-.pausa__pearl {
-  margin-bottom: 2.5rem;
-}
 .pausa__quote p {
   font-size: calc(clamp(2rem, 1.2rem + 3.3vw, 4.1rem) * var(--heading-scale) * var(--heading-tune));
   line-height: 1.12;
@@ -2283,9 +2280,35 @@ html[data-theme="dark"] .area::before {
 .ribbon__row li:nth-child(even) {
   color: var(--accent);
 }
-.ribbon__pearl {
-  width: 12px;
-  height: 12px;
+/* bolinhas de cor sólida, uma cor da paleta para cada palavra (o ciclo se repete a cada 6) */
+.ribbon__dot {
+  flex: none;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: var(--dot, var(--c-oliva));
+}
+.ribbon__row li:nth-child(6n + 1) {
+  --dot: var(--c-oliva);
+}
+.ribbon__row li:nth-child(6n + 2) {
+  --dot: var(--c-terracota);
+}
+.ribbon__row li:nth-child(6n + 3) {
+  --dot: var(--c-fendi);
+}
+.ribbon__row li:nth-child(6n + 4) {
+  --dot: var(--c-cafe);
+}
+.ribbon__row li:nth-child(6n + 5) {
+  --dot: var(--c-areia);
+}
+.ribbon__row li:nth-child(6n + 6) {
+  --dot: var(--c-profundo);
+}
+/* no tema escuro o marrom profundo some no fundo: usa o bege pérola */
+html[data-theme="dark"] .ribbon__row li:nth-child(6n + 6) {
+  --dot: var(--c-perola);
 }
 @keyframes ribbon {
   to {

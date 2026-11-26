@@ -360,7 +360,6 @@ export function Pausa({ c }: P) {
         <span className="ring ring--b" />
       </div>
       <div className="wrap pausa__inner">
-        <Pearl className="pausa__pearl" size={18} />
         <blockquote className="pausa__quote" data-reveal>
           <p>“{plain(s.quote)}”</p>
         </blockquote>
