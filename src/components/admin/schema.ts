@@ -202,6 +202,13 @@ export const PANELS: Panel[] = [
         ],
       },
       { type: "toggle", path: "hero.decorations", label: "Elementos decorativos (círculo, linha e pérola)" },
+      { type: "toggle", path: "hero.showBadge", label: "Selo circular girando junto à foto" },
+      {
+        type: "text",
+        path: "hero.badgeText",
+        label: "Texto do selo",
+        help: "Termine com “ · ” para o início e o fim se encontrarem no círculo. Ideal: até 40 caracteres.",
+      },
     ],
   },
   {
@@ -279,6 +286,16 @@ export const PANELS: Panel[] = [
           { type: "text", path: "text", label: "Descrição", rows: 3 },
         ],
       },
+      { type: "heading", label: "Chamada em cada área" },
+      { type: "toggle", path: "areas.showCta", label: "Mostrar link para conversar sobre a área" },
+      { type: "text", path: "areas.ctaLabel", label: "Texto do link" },
+      {
+        type: "text",
+        path: "areas.ctaMessage",
+        label: "Mensagem do WhatsApp",
+        rows: 3,
+        help: "Use {area} onde o nome da área deve entrar. Sem WhatsApp cadastrado, o link leva à seção de contato.",
+      },
       {
         type: "confirm",
         path: "review.areasValidated",
@@ -310,6 +327,20 @@ export const PANELS: Panel[] = [
       },
       { type: "text", path: "processo.ctaLabel", label: "Chamada final" },
       { type: "text", path: "processo.ctaHref", label: "Link da chamada" },
+    ],
+  },
+  {
+    id: "faixa",
+    label: "Faixa de palavras",
+    group: "Seções do site",
+    section: "faixa",
+    anchor: "valores",
+    fields: [
+      {
+        type: "note",
+        text: "Faixa que desliza devagar entre as seções. Para quando o visitante passa o mouse e tem botão de pausa. Com movimento reduzido, as palavras ficam paradas.",
+      },
+      { type: "text", path: "faixa.words", label: "Palavras", rows: 7, help: "Uma palavra ou expressão por linha." },
     ],
   },
   {
@@ -360,6 +391,12 @@ export const PANELS: Panel[] = [
     fields: [
       { type: "text", path: "pausa.quote", label: "Frase", rows: 3 },
       { type: "text", path: "pausa.text", label: "Texto abaixo", rows: 2 },
+      { type: "heading", label: "Pausa guiada de respiração", help: "Um minuto: 4 segundos inspirando, 6 soltando o ar." },
+      { type: "toggle", path: "pausa.breathing", label: "Mostrar o exercício de respiração" },
+      { type: "text", path: "pausa.breathingLabel", label: "Texto do botão" },
+      { type: "text", path: "pausa.inhaleLabel", label: "Texto ao inspirar" },
+      { type: "text", path: "pausa.exhaleLabel", label: "Texto ao soltar o ar" },
+      { type: "text", path: "pausa.breathingNote", label: "Observação abaixo do círculo", rows: 2 },
     ],
   },
   {
@@ -411,6 +448,20 @@ export const PANELS: Panel[] = [
       { type: "text", path: "contato.bookingUrl", label: "Link de agendamento externo" },
       { type: "text", path: "contato.bookingLabel", label: "Texto do botão de agendamento" },
       { type: "image", path: "contato.image", label: "Fotografia da seção" },
+      { type: "heading", label: "Assuntos do WhatsApp", help: "O visitante escolhe um assunto e a mensagem já vai pronta." },
+      { type: "toggle", path: "contato.showTopics", label: "Mostrar os assuntos" },
+      { type: "text", path: "contato.topicsTitle", label: "Pergunta acima dos assuntos" },
+      {
+        type: "list",
+        path: "contato.topics",
+        label: "Assuntos",
+        itemTitle: "label",
+        addLabel: "Adicionar assunto",
+        fields: [
+          { type: "text", path: "label", label: "Texto do botão" },
+          { type: "text", path: "message", label: "Mensagem que vai para o WhatsApp", rows: 3 },
+        ],
+      },
       { type: "heading", label: "Formulário de contato" },
       {
         type: "note",

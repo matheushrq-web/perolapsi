@@ -1922,12 +1922,12 @@ main:focus {
 /* ==========================================================================
    Revelação na rolagem (somente títulos, imagens e linhas)
    ========================================================================== */
-.reveal-ready [data-reveal]:not([data-reveal="image"]):not([data-reveal="line"]) {
+.reveal-ready [data-reveal]:not([data-reveal="image"]):not([data-reveal="line"]):not([data-reveal="draw"]):not([data-reveal="run"]) {
   transition:
     opacity 1s var(--ease),
     transform 1s var(--ease);
 }
-.reveal-ready [data-reveal]:not(.is-in):not([data-reveal="image"]):not([data-reveal="line"]) {
+.reveal-ready [data-reveal]:not(.is-in):not([data-reveal="image"]):not([data-reveal="line"]):not([data-reveal="draw"]):not([data-reveal="run"]) {
   opacity: 0;
   transform: translateY(18px);
 }
@@ -2020,4 +2020,533 @@ html[data-motion="off"] *::after {
   min-height: 44px;
   display: inline-flex;
   align-items: center;
+}
+
+/* ==========================================================================
+   Detalhes de vida: selo do topo, brilhos, linha desenhada, pérola que
+   percorre as etapas, faixa de palavras, pausa guiada, assuntos do contato
+   ========================================================================== */
+
+/* selo circular girando devagar junto à foto do topo */
+.hero__badge {
+  position: absolute;
+  z-index: 2;
+  right: -2.25rem;
+  bottom: 10%;
+  width: clamp(92px, 9vw, 124px);
+  height: auto;
+  animation: turn 38s linear infinite;
+  overflow: visible;
+}
+.hero__badge-bg {
+  fill: var(--paper);
+  stroke: var(--line);
+}
+.hero__badge text {
+  font-family: var(--font-body);
+  font-size: 9.2px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  fill: var(--ink-soft);
+}
+.hero__badge-dot {
+  fill: var(--accent);
+}
+.hero__visual:hover .hero__badge {
+  animation-duration: 14s;
+}
+@media (max-width: 1023px) {
+  .hero__badge {
+    right: -0.5rem;
+    bottom: -1.5rem;
+  }
+}
+
+/* conexão: luz ambiente e linha que se desenha */
+.conexao {
+  overflow: hidden;
+}
+.conexao__glow {
+  position: absolute;
+  z-index: 0;
+  right: -10vw;
+  top: 8%;
+  width: min(62vw, 54rem);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at 40% 40%,
+    color-mix(in srgb, var(--c-perola) 70%, transparent),
+    color-mix(in srgb, var(--c-terracota) 10%, transparent) 45%,
+    transparent 70%
+  );
+  filter: blur(10px);
+  opacity: 0.7;
+  pointer-events: none;
+  animation: breathe-glow 16s ease-in-out infinite alternate;
+}
+html[data-theme="dark"] .conexao__glow {
+  opacity: 0.18;
+}
+@keyframes breathe-glow {
+  to {
+    transform: scale(1.12) translate(-3%, 4%);
+  }
+}
+.conexao__grid {
+  z-index: 1;
+}
+.conexao__curve {
+  display: none;
+  position: absolute;
+  z-index: 0;
+  left: 18%;
+  top: 34%;
+  width: 46%;
+  height: 46%;
+  overflow: visible;
+  pointer-events: none;
+}
+.conexao__curve path {
+  fill: none;
+  stroke: var(--line-strong);
+  stroke-width: 1;
+  vector-effect: non-scaling-stroke;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 0;
+}
+.reveal-ready .conexao__curve path {
+  transition: stroke-dashoffset 2.6s var(--ease) 0.3s;
+}
+.reveal-ready .conexao__curve path:not(.is-in) {
+  stroke-dashoffset: 1;
+}
+@media (min-width: 1024px) {
+  .conexao__curve {
+    display: block;
+  }
+}
+
+/* áreas: brilho que segue o mouse e chamada para conversar */
+.area {
+  display: flex;
+  flex-direction: column;
+  isolation: isolate;
+}
+.area::before {
+  content: "";
+  position: absolute;
+  inset: 0 -1rem;
+  z-index: -1;
+  border-radius: 10px;
+  background: radial-gradient(
+    240px circle at var(--gx, 50%) var(--gy, 0%),
+    color-mix(in srgb, var(--c-perola) 55%, transparent),
+    transparent 70%
+  );
+  opacity: 0;
+  transition: opacity 0.6s var(--ease);
+  pointer-events: none;
+}
+html[data-theme="dark"] .area::before {
+  background: radial-gradient(
+    240px circle at var(--gx, 50%) var(--gy, 0%),
+    color-mix(in srgb, var(--c-perola) 9%, transparent),
+    transparent 70%
+  );
+}
+.area:hover::before,
+.area:focus-within::before {
+  opacity: 1;
+}
+.area__num {
+  transition:
+    letter-spacing 0.6s var(--ease),
+    color 0.4s;
+}
+.area:hover .area__num {
+  letter-spacing: 0.3em;
+}
+.area__cta {
+  margin-top: auto;
+  padding-top: 1.1rem;
+  align-self: flex-start;
+  min-height: 44px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--accent);
+  background-position: 0 calc(100% - 0.55rem);
+}
+@media (hover: hover) and (pointer: fine) {
+  .area__cta {
+    color: var(--ink-soft);
+    transition:
+      color 0.4s var(--ease),
+      background-size 0.55s var(--ease);
+  }
+  .area:hover .area__cta,
+  .area__cta:focus-visible {
+    color: var(--accent);
+  }
+}
+
+/* etapas: a pérola percorre a linha uma vez ao aparecer */
+.steps__deco {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  list-style: none;
+}
+.steps__runner {
+  position: absolute;
+  z-index: 2;
+  width: 14px;
+  height: 14px;
+  left: -1px;
+  top: 0.35rem;
+  opacity: 0;
+}
+.reveal-ready .steps__runner {
+  transition:
+    top 2.6s var(--ease) 0.5s,
+    left 2.6s var(--ease) 0.5s,
+    opacity 0.4s 0.4s;
+}
+.steps__runner.is-in {
+  opacity: 1;
+  top: calc(100% - 1.4rem);
+}
+.step__dot {
+  transition:
+    transform 0.5s var(--ease),
+    box-shadow 0.5s var(--ease);
+}
+.step:hover .step__dot {
+  transform: scale(1.35);
+  box-shadow:
+    0 0 0 5px var(--paper-2),
+    0 0 0 9px color-mix(in srgb, var(--c-terracota) 22%, transparent);
+}
+.step__num {
+  transition:
+    color 0.5s var(--ease),
+    transform 0.6s var(--ease);
+}
+.step:hover .step__num {
+  color: var(--accent);
+  transform: translateY(-4px);
+}
+@media (min-width: 900px) {
+  .steps__runner {
+    top: -1px;
+    left: -1px;
+  }
+  .steps__runner.is-in {
+    top: -1px;
+    left: calc(100% - 13px);
+  }
+}
+
+/* faixa de palavras */
+.ribbon {
+  position: relative;
+  overflow: hidden;
+  padding-block: clamp(1.6rem, 3vw, 2.4rem);
+  background: var(--paper);
+  border-block: 1px solid var(--line);
+}
+.ribbon__track {
+  display: flex;
+  width: max-content;
+  animation: ribbon 46s linear infinite;
+}
+.ribbon:hover .ribbon__track,
+.ribbon.is-paused .ribbon__track {
+  animation-play-state: paused;
+}
+.ribbon__row {
+  display: flex;
+  flex: none;
+}
+.ribbon__row li {
+  display: flex;
+  align-items: center;
+  gap: clamp(1.5rem, 3vw, 2.75rem);
+  padding-right: clamp(1.5rem, 3vw, 2.75rem);
+  font-family: var(--font-heading);
+  font-style: italic;
+  font-size: calc(clamp(1.6rem, 1.2rem + 1.8vw, 2.8rem) * var(--heading-tune));
+  line-height: 1;
+  white-space: nowrap;
+  color: var(--ink);
+}
+.ribbon__row li:nth-child(even) {
+  color: var(--accent);
+}
+.ribbon__pearl {
+  width: 12px;
+  height: 12px;
+}
+@keyframes ribbon {
+  to {
+    transform: translateX(-50%);
+  }
+}
+.ribbon__toggle {
+  position: absolute;
+  right: var(--gutter);
+  bottom: 0.5rem;
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  background: var(--paper);
+  color: var(--ink-soft);
+  cursor: pointer;
+  opacity: 0.75;
+  transition:
+    opacity 0.3s,
+    border-color 0.3s;
+}
+.ribbon__toggle:hover,
+.ribbon__toggle:focus-visible {
+  opacity: 1;
+  border-color: var(--line-strong);
+}
+@media (prefers-reduced-motion: reduce) {
+  .ribbon__track {
+    flex-wrap: wrap;
+    width: auto;
+    justify-content: center;
+  }
+  .ribbon__row[aria-hidden="true"],
+  .ribbon__toggle {
+    display: none;
+  }
+  .ribbon__row {
+    flex: 1 1 100%;
+    flex-wrap: wrap;
+    justify-content: center;
+    row-gap: 0.8rem;
+  }
+  .ribbon__row li {
+    white-space: normal;
+  }
+}
+html[data-motion="off"] .ribbon__toggle,
+html[data-motion="off"] .ribbon__row[aria-hidden="true"] {
+  display: none;
+}
+html[data-motion="off"] .ribbon__track,
+html[data-motion="off"] .ribbon__row {
+  flex-wrap: wrap;
+  width: auto;
+  justify-content: center;
+  row-gap: 0.8rem;
+}
+html[data-motion="off"] .ribbon__row {
+  flex: 1 1 100%;
+}
+html[data-motion="off"] .ribbon__row li {
+  white-space: normal;
+}
+
+/* pausa guiada de respiração */
+.breath {
+  margin-top: clamp(2.5rem, 5vw, 3.5rem);
+  display: grid;
+  justify-items: center;
+  gap: 1.25rem;
+}
+.breath__stage {
+  position: relative;
+  width: 132px;
+  height: 132px;
+  display: grid;
+  place-items: center;
+}
+.breath__ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 1px dashed color-mix(in srgb, var(--c-perola) 40%, transparent);
+}
+.breath__orb {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at 36% 32%,
+    #fff 0,
+    color-mix(in srgb, var(--c-perola) 60%, #fff) 22%,
+    var(--c-perola) 55%,
+    var(--c-areia) 100%
+  );
+  box-shadow: 0 18px 40px -18px rgba(0, 0, 0, 0.5);
+  transform: scale(0.42);
+  transition: transform 1.2s var(--ease);
+}
+.breath:not(.is-running) .breath__orb {
+  animation: orb-idle 5s ease-in-out infinite alternate;
+}
+.breath.is-running .breath__orb {
+  animation: breathe 10s ease-in-out infinite;
+}
+@keyframes orb-idle {
+  to {
+    transform: scale(0.5);
+  }
+}
+@keyframes breathe {
+  0% {
+    transform: scale(0.42);
+  }
+  40% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0.42);
+  }
+}
+.breath__label {
+  min-height: 2.6em;
+  margin: 0;
+  font-family: var(--font-heading);
+  font-style: italic;
+  font-size: calc(1.5rem * var(--heading-tune));
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+  justify-content: center;
+}
+.breath__count {
+  font-family: var(--font-body);
+  font-style: normal;
+  font-size: 0.95rem;
+  opacity: 0.8;
+  font-variant-numeric: tabular-nums;
+}
+.breath__idle {
+  font-family: var(--font-body);
+  font-style: normal;
+  font-size: 0.88rem;
+  max-width: 30rem;
+  text-align: center;
+}
+.btn--light {
+  background: var(--on-deep);
+  color: var(--deep);
+}
+.btn--light:hover {
+  background: #fff;
+}
+html[data-theme="dark"] .btn--light {
+  color: var(--c-profundo);
+}
+
+/* contato: luz ambiente, assuntos e copiar número */
+.contato {
+  overflow: hidden;
+}
+.contato__glow {
+  position: absolute;
+  left: -14vw;
+  bottom: -10%;
+  width: min(56vw, 46rem);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    color-mix(in srgb, var(--c-oliva) 16%, transparent),
+    transparent 65%
+  );
+  pointer-events: none;
+  animation: breathe-glow 18s ease-in-out infinite alternate-reverse;
+}
+.contato > .wrap {
+  position: relative;
+  z-index: 1;
+}
+.contact-actions {
+  margin-top: 2.2rem;
+  display: grid;
+  gap: 1.5rem;
+}
+.topics {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  min-width: 0;
+}
+.topics legend {
+  padding: 0;
+  margin-bottom: 0.8rem;
+  font-size: 0.78rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--ink-soft);
+}
+.topics__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.chip {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 1.1rem;
+  border-radius: 999px;
+  border: 1px solid var(--line-strong);
+  font-size: 0.9rem;
+  color: var(--ink);
+  cursor: pointer;
+  transition:
+    background-color 0.35s var(--ease),
+    border-color 0.35s var(--ease),
+    color 0.35s var(--ease),
+    transform 0.25s var(--ease);
+}
+.chip input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+.chip:hover {
+  border-color: var(--ink);
+}
+.chip:active {
+  transform: scale(0.97);
+}
+.chip.is-active {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--paper);
+}
+.chip:has(input:focus-visible) {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+/* rodapé: voltar ao topo */
+.footer__credits {
+  margin-left: 0 !important;
+}
+.footer__top {
+  margin-left: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 44px;
+  color: var(--c-perola);
+}
+.footer__top svg {
+  transition: transform 0.4s var(--ease);
+}
+.footer__top:hover svg {
+  transform: translateY(-3px);
 }

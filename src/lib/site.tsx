@@ -8,6 +8,7 @@ export const SECTION_IDS: Record<SectionKey, string> = {
   sobre: "sobre",
   areas: "psicoterapia",
   processo: "como-funciona",
+  faixa: "valores",
   modalidades: "atendimento",
   pausa: "pausa",
   faq: "duvidas",
@@ -20,6 +21,7 @@ export const SECTION_NAMES: Record<SectionKey, string> = {
   sobre: "Sobre mim",
   areas: "Áreas de atuação",
   processo: "Como funciona",
+  faixa: "Faixa de palavras",
   modalidades: "Modalidades de atendimento",
   pausa: "Pausa e reflexão",
   faq: "Perguntas frequentes",
@@ -44,10 +46,10 @@ export function plain(text: string) {
   return text.replace(/\*/g, "");
 }
 
-export function whatsappHref(c: SiteContent) {
+export function whatsappHref(c: SiteContent, message = c.contato.whatsappMessage) {
   const n = c.contato.whatsapp.replace(/\D/g, "");
   if (!n) return "";
-  return `https://wa.me/${n}?text=${encodeURIComponent(c.contato.whatsappMessage)}`;
+  return `https://wa.me/${n}?text=${encodeURIComponent(message)}`;
 }
 
 export function instagramHref(c: SiteContent) {

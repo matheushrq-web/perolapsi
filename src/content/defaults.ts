@@ -71,6 +71,7 @@ export const DEFAULT_CONTENT: SiteContent = {
       { key: "sobre", visible: true },
       { key: "areas", visible: true },
       { key: "processo", visible: true },
+      { key: "faixa", visible: true },
       { key: "modalidades", visible: true },
       { key: "pausa", visible: true },
       { key: "faq", visible: true },
@@ -102,6 +103,8 @@ export const DEFAULT_CONTENT: SiteContent = {
     imageRatio: "4/5",
     imageSide: "right",
     decorations: true,
+    showBadge: true,
+    badgeText: "escuta · acolhimento · cuidado ético · ",
   },
 
   conexao: {
@@ -176,6 +179,14 @@ export const DEFAULT_CONTENT: SiteContent = {
         text: "Encontrar espaço para elaborar experiências, transições e acontecimentos difíceis.",
       },
     ],
+    showCta: true,
+    ctaLabel: "Conversar sobre isso",
+    ctaMessage:
+      "Olá, Pérola! Conheci seu trabalho pelo site e gostaria de conversar sobre {area}. Pode me contar como funcionam os atendimentos?",
+  },
+
+  faixa: {
+    words: "Escuta\nAcolhimento\nSem julgamentos\nNo seu tempo\nSigilo\nRespeito à sua história",
   },
 
   processo: {
@@ -249,6 +260,11 @@ export const DEFAULT_CONTENT: SiteContent = {
   pausa: {
     quote: "Você não precisa esperar que tudo fique difícil para começar a cuidar de si.",
     text: "Cuidar da saúde emocional também é uma forma de reconhecer aquilo que importa em você.",
+    breathing: true,
+    breathingLabel: "Respirar por um minuto",
+    inhaleLabel: "Inspire",
+    exhaleLabel: "Solte o ar devagar",
+    breathingNote: "Um convite a uma pausa. Não substitui acompanhamento profissional.",
   },
 
   faq: {
@@ -337,6 +353,35 @@ export const DEFAULT_CONTENT: SiteContent = {
       zoom: 1,
       standIn: false,
     },
+    showTopics: true,
+    topicsTitle: "Sobre o que você quer conversar?",
+    topics: [
+      {
+        id: "conhecer",
+        visible: true,
+        label: "Conhecer o atendimento",
+        message:
+          "Olá, Pérola! Conheci seu trabalho através do site e gostaria de saber um pouco mais sobre os atendimentos psicológicos.",
+      },
+      {
+        id: "agendar",
+        visible: true,
+        label: "Agendar uma conversa",
+        message: "Olá, Pérola! Vi seu site e gostaria de agendar um primeiro contato.",
+      },
+      {
+        id: "valores",
+        visible: true,
+        label: "Valores e horários",
+        message: "Olá, Pérola! Vi seu site e gostaria de saber sobre valores e horários disponíveis.",
+      },
+      {
+        id: "online",
+        visible: true,
+        label: "Atendimento on-line",
+        message: "Olá, Pérola! Vi seu site e gostaria de saber como funciona o atendimento on-line.",
+      },
+    ],
     form: {
       enabled: false,
       title: "Prefere deixar uma mensagem?",
@@ -429,4 +474,5 @@ export const ITEM_TEMPLATES = {
     image: { url: "", alt: "", focalX: 50, focalY: 50, zoom: 1, standIn: false },
   },
   "footer.socials": { id: "", visible: true, label: "Nova rede", href: "https://" },
+  "contato.topics": { id: "", visible: true, label: "Novo assunto", message: "Olá, Pérola! " },
 } as const;

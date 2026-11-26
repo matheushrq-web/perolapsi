@@ -162,6 +162,21 @@ export function Motion({ settings, rev = 0 }: { settings: SiteContent["motion"];
       });
     }
 
+    /* brilho suave que acompanha o mouse dentro de blocos marcados com data-glow */
+    if (on && fine) {
+      const glowEls = Array.from(document.querySelectorAll<HTMLElement>("[data-glow]"));
+      const handlers = glowEls.map((el) => {
+        const move = (e: PointerEvent) => {
+          const r = el.getBoundingClientRect();
+          el.style.setProperty("--gx", `${e.clientX - r.left}px`);
+          el.style.setProperty("--gy", `${e.clientY - r.top}px`);
+        };
+        el.addEventListener("pointermove", move);
+        return () => el.removeEventListener("pointermove", move);
+      });
+      cleanups.push(() => handlers.forEach((h) => h()));
+    }
+
     /* efeito magnético sutil nos botões principais */
     if (on && settings.magnetic && fine) {
       const els = Array.from(document.querySelectorAll<HTMLElement>("[data-magnetic]"));

@@ -90,6 +90,12 @@ export function Footer({ c, year }: { c: SiteContent; year: number }) {
             Política de Privacidade
           </a>
           {f.credits && <p className="footer__credits">{f.credits}</p>}
+          <a className="link footer__top" href="#inicio">
+            Voltar ao topo
+            <svg viewBox="0 0 10 12" width="10" height="12" aria-hidden="true" focusable="false">
+              <path d="M5 11V1M1 5l4-4 4 4" fill="none" stroke="currentColor" strokeWidth="1.2" />
+            </svg>
+          </a>
         </div>
       </div>
     </footer>

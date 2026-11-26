@@ -1,6 +1,7 @@
 import { Fragment } from "react";
 import type { SiteContent } from "@/content/types";
-import { crpLine, Emph, enabledModalities, paras, plain, SECTION_IDS } from "@/lib/site";
+import { crpLine, Emph, enabledModalities, paras, plain, SECTION_IDS, whatsappHref } from "@/lib/site";
+import { Breathing } from "./Breathing";
 import { Photo } from "./Photo";
 import { ArrowIcon, Pearl } from "./Icons";
 
@@ -85,6 +86,20 @@ export function Hero({ c }: P) {
             sizes="(min-width: 1024px) 40vw, (min-width: 640px) 70vw, 92vw"
           />
           {h.decorations && <Pearl className="hero__pearl" size={46} />}
+          {h.showBadge && h.badgeText.trim() && (
+            <svg className="hero__badge" viewBox="0 0 120 120" aria-hidden="true" focusable="false">
+              <defs>
+                <path id="badge-circle" d="M60,60 m-46,0 a46,46 0 1,1 92,0 a46,46 0 1,1 -92,0" />
+              </defs>
+              <circle cx="60" cy="60" r="59" className="hero__badge-bg" />
+              <text>
+                <textPath href="#badge-circle" textLength="289" lengthAdjust="spacing">
+                  {h.badgeText.toUpperCase()}
+                </textPath>
+              </text>
+              <circle cx="60" cy="60" r="7" className="hero__badge-dot" />
+            </svg>
+          )}
           {h.showCrp && crp && (
             <p className="hero__vertical" aria-hidden="true">
               {c.brand.name} — {crp}
@@ -101,6 +116,10 @@ export function Conexao({ c }: P) {
   const s = c.conexao;
   return (
     <section id={SECTION_IDS.conexao} className="section conexao" aria-labelledby="conexao-title">
+      <span className="conexao__glow" data-parallax="0.04" aria-hidden="true" />
+      <svg className="conexao__curve" viewBox="0 0 600 260" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+        <path d="M10 10 C 120 40, 60 180, 210 200 S 470 150, 590 250" pathLength="1" data-reveal="draw" />
+      </svg>
       <div className="wrap conexao__grid">
         <h2 id="conexao-title" className="h2 conexao__title" data-reveal>
           <Emph text={s.title} />
@@ -182,13 +201,29 @@ export function Areas({ c }: P) {
           <p className="areas__sub">{s.subtitle}</p>
         </div>
         <ol className="areas__list">
-          {items.map((item, i) => (
-            <li key={item.id} className="area">
-              <span className="area__num">{String(i + 1).padStart(2, "0")}</span>
-              <h3 className="area__title">{item.title}</h3>
-              <p>{item.text}</p>
-            </li>
-          ))}
+          {items.map((item, i) => {
+            const message = s.ctaMessage.replace(/\{area\}/g, item.title.toLowerCase());
+            const href = whatsappHref(c, message) || `#${SECTION_IDS.contato}`;
+            const external = href.startsWith("http");
+            return (
+              <li key={item.id} className="area" data-glow>
+                <span className="area__num">{String(i + 1).padStart(2, "0")}</span>
+                <h3 className="area__title">{item.title}</h3>
+                <p>{item.text}</p>
+                {s.showCta && s.ctaLabel && (
+                  <a
+                    className="area__cta link link--arrow"
+                    href={href}
+                    {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                  >
+                    {s.ctaLabel}
+                    <span className="visually-hidden">: {item.title}</span>
+                    <ArrowIcon />
+                  </a>
+                )}
+              </li>
+            );
+          })}
         </ol>
       </div>
     </section>
@@ -209,7 +244,10 @@ export function Processo({ c }: P) {
           <p className="processo__intro">{s.intro}</p>
         </div>
         <ol className="steps" style={{ "--n": steps.length } as React.CSSProperties}>
-          <span className="steps__line" aria-hidden="true" data-reveal="line" />
+          <li className="steps__deco" aria-hidden="true">
+            <span className="steps__line" data-reveal="line" />
+            <span className="steps__runner pearl" data-reveal="run" />
+          </li>
           {steps.map((step, i) => (
             <li key={step.id} className="step">
               <span className="step__num" aria-hidden="true">
@@ -308,6 +346,7 @@ export function Pausa({ c }: P) {
           <p>“{plain(s.quote)}”</p>
         </blockquote>
         {s.text && <p className="pausa__text">{s.text}</p>}
+        {s.breathing && <Breathing c={c} />}
       </div>
     </section>
   );

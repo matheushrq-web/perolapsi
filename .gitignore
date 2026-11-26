@@ -43,3 +43,6 @@ next-env.d.ts
 /data/
 
 !.env.example
+
+# configuração local do Claude Code
+/.claude/

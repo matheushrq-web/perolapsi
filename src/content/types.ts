@@ -10,6 +10,7 @@ export type SectionKey =
   | "sobre"
   | "areas"
   | "processo"
+  | "faixa"
   | "modalidades"
   | "pausa"
   | "faq"
@@ -64,6 +65,11 @@ export interface ModalityItem extends ListItem {
   title: string;
   text: string;
   image: ImageRef;
+}
+
+export interface TopicItem extends ListItem {
+  label: string;
+  message: string;
 }
 
 export interface SocialItem extends ListItem {
@@ -137,6 +143,9 @@ export interface SiteContent {
     imageRatio: "4/5" | "3/4" | "2/3" | "1/1";
     imageSide: "right" | "left";
     decorations: boolean;
+    /** Selo circular com texto girando devagar junto à foto */
+    showBadge: boolean;
+    badgeText: string;
   };
 
   conexao: {
@@ -157,6 +166,16 @@ export interface SiteContent {
     title: string;
     subtitle: string;
     items: AreaItem[];
+    /** Link em cada área que abre o WhatsApp já citando o tema */
+    showCta: boolean;
+    ctaLabel: string;
+    /** Use {area} onde o nome da área deve aparecer */
+    ctaMessage: string;
+  };
+
+  faixa: {
+    /** Uma palavra ou expressão por linha */
+    words: string;
   };
 
   processo: {
@@ -184,6 +203,12 @@ export interface SiteContent {
   pausa: {
     quote: string;
     text: string;
+    /** Exercício guiado de respiração */
+    breathing: boolean;
+    breathingLabel: string;
+    inhaleLabel: string;
+    exhaleLabel: string;
+    breathingNote: string;
   };
 
   faq: {
@@ -206,6 +231,10 @@ export interface SiteContent {
     bookingUrl: string;
     bookingLabel: string;
     image: ImageRef;
+    /** Assuntos que preparam a mensagem do WhatsApp */
+    showTopics: boolean;
+    topicsTitle: string;
+    topics: TopicItem[];
     form: {
       enabled: boolean;
       title: string;

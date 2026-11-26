@@ -5,6 +5,7 @@ import { Header } from "./Header";
 import { ThemeScript } from "./Theme";
 import { Areas, Conexao, Hero, Modalidades, Pausa, Processo, Sobre } from "./Sections";
 import { Faq } from "./Faq";
+import { Ribbon } from "./Ribbon";
 import { Contato } from "./Contact";
 import { Footer } from "./Footer";
 import { Motion } from "./Motion";
@@ -32,6 +33,7 @@ export function Site({
     sobre: () => <Sobre c={c} />,
     areas: () => <Areas c={c} />,
     processo: () => <Processo c={c} />,
+    faixa: () => <Ribbon c={c} />,
     modalidades: () => <Modalidades c={c} />,
     pausa: () => <Pausa c={c} />,
     faq: () => <Faq c={c} />,

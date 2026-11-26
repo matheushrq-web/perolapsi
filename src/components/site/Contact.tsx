@@ -1,7 +1,8 @@
 import type { SiteContent } from "@/content/types";
 import { Emph, formatPhone, instagramHref, paras, SECTION_IDS, whatsappHref } from "@/lib/site";
-import { ArrowIcon, InstagramIcon, WhatsAppIcon } from "./Icons";
+import { ArrowIcon } from "./Icons";
 import { ContactForm } from "./ContactForm";
+import { ContactActions } from "./ContactActions";
 import { Photo } from "./Photo";
 
 export function Contato({ c, preview = false }: { c: SiteContent; preview?: boolean }) {
@@ -17,6 +18,7 @@ export function Contato({ c, preview = false }: { c: SiteContent; preview?: bool
 
   return (
     <section id={SECTION_IDS.contato} className="section contato" aria-labelledby="contato-title">
+      <span className="contato__glow" data-parallax="-0.05" aria-hidden="true" />
       <div className="wrap">
         <h2 id="contato-title" className="h2 contato__title" data-reveal>
           <Emph text={s.title} />
@@ -28,24 +30,7 @@ export function Contato({ c, preview = false }: { c: SiteContent; preview?: bool
                 {p}
               </p>
             ))}
-            <div className="actions">
-              {wa ? (
-                <a className="btn btn--primary" href={wa} target="_blank" rel="noopener noreferrer" data-magnetic>
-                  <WhatsAppIcon size={18} />
-                  {s.whatsappLabel}
-                </a>
-              ) : ig ? (
-                <a className="btn btn--primary" href={ig} target="_blank" rel="noopener noreferrer" data-magnetic>
-                  <InstagramIcon size={16} />
-                  Conversar pelo Instagram
-                </a>
-              ) : null}
-              {s.bookingUrl && (
-                <a className="btn btn--ghost" href={s.bookingUrl} target="_blank" rel="noopener noreferrer">
-                  {s.bookingLabel}
-                </a>
-              )}
-            </div>
+            <ContactActions c={c} />
           </div>
 
           <div className="contato__side">

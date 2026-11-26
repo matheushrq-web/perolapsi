@@ -19,7 +19,7 @@ const ENUMS: Record<string, readonly string[]> = {
   "hero.imageSide": ["right", "left"],
 };
 
-const SECTION_KEYS = ["hero", "conexao", "sobre", "areas", "processo", "modalidades", "pausa", "faq", "contato"];
+const SECTION_KEYS = ["hero", "conexao", "sobre", "areas", "processo", "faixa", "modalidades", "pausa", "faq", "contato"];
 
 const RANGES: Record<string, [number, number]> = {
   "theme.headingScale": [0.8, 1.3],
