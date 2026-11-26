@@ -4,7 +4,7 @@ import type { SiteContent } from "@/content/types";
 import { crpLine, Emph, enabledModalities, paras, plain, SECTION_IDS, whatsappHref } from "@/lib/site";
 import { Breathing } from "./Breathing";
 import { Photo } from "./Photo";
-import { ArrowIcon, Pearl } from "./Icons";
+import { ArrowIcon } from "./Icons";
 
 type P = { c: SiteContent };
 
@@ -50,7 +50,6 @@ export function Hero({ c }: P) {
           </div>
           {h.microcopy && (
             <p className="microcopy" data-enter-item>
-              <Pearl size={9} />
               {h.microcopy}
             </p>
           )}
@@ -86,7 +85,6 @@ export function Hero({ c }: P) {
             className="hero__photo"
             sizes="(min-width: 1024px) 40vw, (min-width: 640px) 70vw, 92vw"
           />
-          {h.decorations && <Pearl className="hero__pearl" size={46} />}
           {h.showBadge && h.badgeText.trim() && (
             <svg className="hero__badge" viewBox="0 0 120 120" aria-hidden="true" focusable="false">
               <defs>
@@ -145,7 +143,6 @@ export function Conexao({ c }: P) {
             </blockquote>
           </figure>
         )}
-        <Pearl className="conexao__pearl" size={14} />
       </div>
     </section>
   );

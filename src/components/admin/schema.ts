@@ -201,7 +201,7 @@ export const PANELS: Panel[] = [
           ["left", "À esquerda do texto"],
         ],
       },
-      { type: "toggle", path: "hero.decorations", label: "Elementos decorativos (círculo, linha e pérola)" },
+      { type: "toggle", path: "hero.decorations", label: "Elementos decorativos (círculo e linha)" },
       { type: "toggle", path: "hero.showBadge", label: "Selo circular girando junto à foto" },
       {
         type: "text",

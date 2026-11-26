@@ -828,11 +828,6 @@ main:focus {
   height: 30vh;
   background: linear-gradient(var(--line-strong), transparent);
 }
-.hero__pearl {
-  position: absolute;
-  left: -14px;
-  bottom: 16%;
-}
 .hero__vertical {
   display: none;
 }
@@ -977,11 +972,6 @@ main:focus {
   font-style: italic;
   color: var(--accent);
   max-width: 16ch;
-}
-.conexao__pearl {
-  position: absolute;
-  right: 6%;
-  top: 0.5rem;
 }
 @media (min-width: 1024px) {
   .conexao__grid {
