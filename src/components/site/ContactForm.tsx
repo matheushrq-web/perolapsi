@@ -78,6 +78,7 @@ export function ContactForm({ c, preview = false }: { c: SiteContent; preview?: 
       <p id="form-notice" className="form__notice">
         {f.notice}
       </p>
+      <div className="form__row">
       <div className={`field${errors.name ? " has-error" : ""}`}>
         <label htmlFor="cf-name">Nome</label>
         <input
@@ -109,6 +110,7 @@ export function ContactForm({ c, preview = false }: { c: SiteContent; preview?: 
             {errors.channel}
           </p>
         )}
+      </div>
       </div>
       <div className={`field${errors.message ? " has-error" : ""}`}>
         <label htmlFor="cf-message">

@@ -31,6 +31,7 @@ export function Contato({ c, preview = false }: { c: SiteContent; preview?: bool
               </p>
             ))}
             <ContactActions c={c} />
+            {s.form.enabled && <ContactForm c={c} preview={preview} />}
           </div>
 
           <div className="contato__side">
@@ -60,7 +61,6 @@ export function Contato({ c, preview = false }: { c: SiteContent; preview?: bool
                 ))}
               </dl>
             )}
-            {s.form.enabled && <ContactForm c={c} preview={preview} />}
           </div>
         </div>
 

@@ -1570,9 +1570,11 @@ main:focus {
   gap: 3rem;
 }
 .contato__text {
-  max-width: 34rem;
   color: var(--ink-soft);
   font-size: 1.05rem;
+}
+.contato__text > p {
+  max-width: 34rem;
 }
 .contato__soft {
   font-family: var(--font-heading);
@@ -1638,9 +1640,25 @@ main:focus {
 
 /* formulário */
 .form {
-  margin-top: 2.5rem;
+  margin-top: 2.75rem;
   display: grid;
   gap: 1.1rem;
+  padding: clamp(1.25rem, 3vw, 2rem);
+  border-radius: calc(var(--img-radius) * 2);
+  border: 1px solid var(--line);
+  background: color-mix(in srgb, var(--paper-2) 70%, transparent);
+}
+.form__row {
+  display: grid;
+  gap: 1.1rem;
+}
+@media (min-width: 640px) {
+  .form__row {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+.contato__text .form {
+  max-width: 40rem;
 }
 .form__title {
   font-size: var(--h3);

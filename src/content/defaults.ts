@@ -391,7 +391,7 @@ export const DEFAULT_CONTENT: SiteContent = {
       },
     ],
     form: {
-      enabled: false,
+      enabled: true,
       title: "Prefere deixar uma mensagem?",
       notice:
         "Para sua privacidade, não envie informações clínicas ou dados sensíveis por aqui. Conte apenas como prefere ser contatado(a).",
