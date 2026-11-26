@@ -391,6 +391,21 @@ export const PANELS: Panel[] = [
     fields: [
       { type: "text", path: "pausa.quote", label: "Frase", rows: 3 },
       { type: "text", path: "pausa.text", label: "Texto abaixo", rows: 2 },
+      {
+        type: "image",
+        path: "pausa.image",
+        label: "Foto de fundo",
+        help: "Fica coberta por um véu verde-oliva para o texto continuar legível. Sem foto, o fundo é só a cor.",
+      },
+      {
+        type: "range",
+        path: "pausa.overlay",
+        label: "Intensidade do véu sobre a foto",
+        min: 0.4,
+        max: 0.95,
+        step: 0.05,
+        unit: "",
+      },
       { type: "heading", label: "Pausa guiada de respiração", help: "Um minuto: 4 segundos inspirando, 6 soltando o ar." },
       { type: "toggle", path: "pausa.breathing", label: "Mostrar o exercício de respiração" },
       { type: "text", path: "pausa.breathingLabel", label: "Texto do botão" },

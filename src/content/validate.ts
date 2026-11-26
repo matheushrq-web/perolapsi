@@ -26,6 +26,7 @@ const RANGES: Record<string, [number, number]> = {
   "theme.bodySize": [15, 20],
   "theme.sectionSpacing": [0.6, 1.6],
   "theme.imageRadius": [0, 32],
+  "pausa.overlay": [0.4, 0.95],
   focalX: [0, 100],
   focalY: [0, 100],
   zoom: [1, 2],
@@ -186,7 +187,13 @@ export function reviewContent(c: SiteContent): Review {
   if (!c.contato.email) warnings.push("E-mail profissional não informado.");
   if (!c.privacy.controllerEmail) warnings.push("Informe um e-mail para solicitações de privacidade (Política de Privacidade).");
   if (!c.seo.siteUrl) warnings.push("Informe o endereço final do site (SEO) para o sitemap e o compartilhamento.");
-  const standIns = [c.hero.image, c.sobre.image, c.contato.image, ...c.modalidades.items.map((m) => m.image)].filter(
+  const standIns = [
+    c.hero.image,
+    c.sobre.image,
+    c.contato.image,
+    c.pausa.image,
+    ...c.modalidades.items.map((m) => m.image),
+  ].filter(
     (i) => i.url && i.standIn,
   );
   if (standIns.length)

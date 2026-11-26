@@ -135,4 +135,6 @@ Para criar um novo campo editável: adicione em `types.ts` e `defaults.ts`, desc
 As fotografias ficam em `public/images/` (WebP, sem metadados) e podem ser trocadas pelo painel.
 A foto das mãos (Início) e a da mesa (Psicoterapia on-line) não mostram a profissional: confirme a licença
 de uso de cada uma e, se exigido, informe o crédito em *Rodapé > Créditos das fotografias*.
+Fundo da seção Pausa: foto da Unsplash (licença Unsplash, uso livre), `photo-1526235591527-15084c256bad`,
+carregada direto de images.unsplash.com; pode ser trocada no painel em *Pausa e reflexão > Foto de fundo*.
 Ícones de WhatsApp e Instagram: Simple Icons (CC0).

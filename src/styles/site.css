@@ -2446,6 +2446,55 @@ html[data-theme="dark"] .btn--light {
   color: var(--c-profundo);
 }
 
+/* pausa: foto de fundo sob um véu verde-oliva, com aproximação muito lenta */
+.pausa__bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+}
+.pausa__bg img {
+  object-fit: cover;
+  animation: slow-zoom 40s ease-in-out infinite alternate;
+}
+@keyframes slow-zoom {
+  from {
+    transform: scale(1.02);
+  }
+  to {
+    transform: scale(1.12) translate(-1%, 1%);
+  }
+}
+.pausa__veil {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background:
+    radial-gradient(ellipse at 50% 45%, transparent 0%, color-mix(in srgb, var(--deep) 55%, transparent) 75%),
+    var(--deep);
+  opacity: var(--veil, 1);
+}
+.pausa .pausa__orbs {
+  z-index: 1;
+}
+.pausa .pausa__inner {
+  z-index: 2;
+  isolation: isolate;
+}
+/* sombra suave atrás do texto: garante contraste mesmo nos pontos claros da foto */
+.pausa .pausa__inner::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: -12% -6%;
+  background: radial-gradient(
+    closest-side,
+    color-mix(in srgb, var(--deep) 62%, transparent) 55%,
+    transparent
+  );
+  pointer-events: none;
+}
+
 /* contato: luz ambiente, assuntos e copiar número */
 .contato {
   overflow: hidden;

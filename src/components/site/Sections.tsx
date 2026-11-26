@@ -1,4 +1,5 @@
 import { Fragment } from "react";
+import Image from "next/image";
 import type { SiteContent } from "@/content/types";
 import { crpLine, Emph, enabledModalities, paras, plain, SECTION_IDS, whatsappHref } from "@/lib/site";
 import { Breathing } from "./Breathing";
@@ -334,6 +335,24 @@ export function Pausa({ c }: P) {
   const s = c.pausa;
   return (
     <section id={SECTION_IDS.pausa} className="section pausa" aria-label="Pausa para reflexão">
+      {s.image.url && (
+        <div className="pausa__bg" aria-hidden="true">
+          <Image
+            src={s.image.url}
+            alt=""
+            fill
+            sizes="100vw"
+            quality={75}
+            style={{ objectPosition: `${s.image.focalX}% ${s.image.focalY}%` }}
+            unoptimized={s.image.url.startsWith("/media/")}
+          />
+        </div>
+      )}
+      <div
+        className="pausa__veil"
+        aria-hidden="true"
+        style={{ "--veil": s.image.url ? s.overlay : 1 } as React.CSSProperties}
+      />
       <div className="pausa__orbs" aria-hidden="true">
         <span className="orb orb--a" data-parallax="0.08" />
         <span className="orb orb--b" data-parallax="-0.06" />

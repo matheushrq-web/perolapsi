@@ -203,6 +203,10 @@ export interface SiteContent {
   pausa: {
     quote: string;
     text: string;
+    /** Foto de fundo, coberta por um véu verde-oliva */
+    image: ImageRef;
+    /** Intensidade do véu sobre a foto (0.4 – 0.95) */
+    overlay: number;
     /** Exercício guiado de respiração */
     breathing: boolean;
     breathingLabel: string;

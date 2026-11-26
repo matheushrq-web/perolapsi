@@ -260,6 +260,14 @@ export const DEFAULT_CONTENT: SiteContent = {
   pausa: {
     quote: "Você não precisa esperar que tudo fique difícil para começar a cuidar de si.",
     text: "Cuidar da saúde emocional também é uma forma de reconhecer aquilo que importa em você.",
+    // Foto ilustrativa (Unsplash, licença livre): sombras de folhas em uma parede, luz quente
+    image: img(
+      "https://images.unsplash.com/photo-1526235591527-15084c256bad?auto=format&fit=crop&w=2000&q=80",
+      "Sombras de folhas projetadas em uma parede clara, sob luz quente de fim de tarde",
+      50,
+      45,
+    ),
+    overlay: 0.8,
     breathing: true,
     breathingLabel: "Respirar por um minuto",
     inhaleLabel: "Inspire",
